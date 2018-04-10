@@ -1,0 +1,52 @@
+{
+  "name": "some-react-charts",
+  "version": "0.0.1",
+  "description": "",
+  "author": "Clay Gregory <clay@claygregory.com> (https://claygregory.com/)",
+  "keywords": [
+    "react",
+    "charts",
+    "graphs",
+    "d3",
+    "visualization"
+  ],
+  "repository": "claygregory/some-react-charts",
+  "homepage": "https://github.com/claygregory/some-react-charts",
+  "license": "MIT",
+  "main": "dist/some-react-charts.js",
+  "module": "src/index.js",
+  "scripts": {
+    "build:lib": "NODE_ENV=production webpack -p",
+    "build:examples": "NODE_ENV=production webpack -p --config webpack.examples.config.js",
+    "build": "run-p build:lib build:examples",
+    "start": "webpack-dev-server --config webpack.examples.config.js"
+  },
+  "dependencies": {
+    "d3-path": "^1.0.5",
+    "d3-scale": "^2.0.0",
+    "d3-shape": "^1.2.0",
+    "fecha": "^2.3.3",
+    "react-autobind": "^1.0.6"
+  },
+  "peerDependencies": {
+    "react": ">0.15.0",
+    "react-dom": ">0.15.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.4",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-react": "^6.24.1",
+    "clean-webpack-plugin": "^0.1.19",
+    "eslint": "^4.19.1",
+    "eslint-plugin-react": "^7.7.0",
+    "html-webpack-plugin": "^3.2.0",
+    "lodash-es": "^4.17.8",
+    "npm-run-all": "^4.1.2",
+    "react-measure": "^2.0.2",
+    "uglifyjs-webpack-plugin": "^1.2.4",
+    "webpack": "^4.5.0",
+    "webpack-cli": "^2.0.14",
+    "webpack-dev-server": "^3.1.3"
+  }
+}
