@@ -2,6 +2,13 @@
 import { every, filter, map as _map, uniq } from 'lodash-es';
 import fecha from 'fecha';
 
+export function constantOrCall(funcOrConstant, ...params) {
+  if (typeof funcOrString === 'function')
+    return funcOrConstant.apply(params[0], params);
+  else
+    return funcOrConstant;
+}
+
 export function detectType(arr) {
   if (!arr || arr.length === 0)
     return 'string';
@@ -46,5 +53,7 @@ export function propertyMap(prop) {
 
 export function scaleData(data, ...specs) {
   const filteredData = filterData(data, ...specs);
-  return filteredData.map(d => specs.map(s => s.scale(d)));
+  return filteredData.map(
+    d => specs.map(s => s.scale(d)).concat(d)
+  );
 }

@@ -1,11 +1,11 @@
 
 import React from 'react';
 
-import { XYChart } from './';
-import { propertyMap, scaleData } from '../util';
+import XYChart from './xy-chart';
+import { constantOrCall, propertyMap, scaleData } from '../util';
 
 
-const Bars = ({ data, chartX, chartY, barWidth = 4, y, y0, y1 }) => {
+const Bars = ({ data, chartX, chartY, fill, barWidth = 4, y, y0, y1 }) => {
 
   const x = chartX;
   if (y0)
@@ -28,11 +28,13 @@ const Bars = ({ data, chartX, chartY, barWidth = 4, y, y0, y1 }) => {
 
   return (
     <React.Fragment>
-      {scaled.map(([x, y0, y1], i) => (
+      {scaled.map(([x, y0, y1, d], i) => (
         <rect key={x.toString()}
-          className="bar" ry={Math.floor(barWidth / 2) + 'px'}
+          className="bar"
+          ry={Math.floor(barWidth / 2) + 'px'}
           x={x - barWidth / 2}
           y={y1}
+          fill={constantOrCall(fill, d, i)}
           width={barWidth} 
           height={(y0 - y1)} />
       ))}
@@ -40,10 +42,10 @@ const Bars = ({ data, chartX, chartY, barWidth = 4, y, y0, y1 }) => {
   );
 };
 
-const BarChart = ({ barWidth = 4, y0, y1, ...props }) => {
+const BarChart = ({ fill, barWidth = 4, y0, y1, ...props }) => {
   return (
     <XYChart margin={[0, barWidth, 0, barWidth]} {...props}>
-      <Bars {...{ barWidth, y0, y1 }}/>
+      <Bars {...{ fill, barWidth, y0, y1 }}/>
     </XYChart>
   );
 };

@@ -3,11 +3,11 @@ import React from 'react';
 import { curveCardinal, line } from 'd3-shape';
 import { sortBy } from 'lodash-es';
 
-import { XYChart } from './';
-import { propertyMap, scaleData } from '../util';
+import XYChart from './xy-chart';
+import { constantOrCall, propertyMap, scaleData } from '../util';
 
 
-const Line = ({ data, chartX, chartY, smooth, strokeWidth = 3, y }) => {
+const Line = ({ data, chartX, chartY, smooth, stroke = 'black', strokeWidth, y }) => {
 
   const x = chartX;
   y = chartY.overrideMap(propertyMap(y));
@@ -23,15 +23,21 @@ const Line = ({ data, chartX, chartY, smooth, strokeWidth = 3, y }) => {
 
   return (
     <React.Fragment>
-      <path strokeWidth={strokeWidth} fill="none" className="line" d={toPath(scaled)} strokeLinecap="round" />
+      <path
+        fill="none"
+        className="line"
+        d={toPath(scaled)}
+        stroke={constantOrCall(stroke)}
+        strokeWidth={constantOrCall(strokeWidth)}
+        strokeLinecap="round" />
     </React.Fragment>
   );
 };
 
-const LineChart = ({ smooth, strokeWidth, ...props }) => {
+const LineChart = ({ stroke, smooth, strokeWidth, ...props }) => {
   return (
     <XYChart margin="8,0,8,0" {...props}>
-      <Line {...{ smooth, strokeWidth }}/>
+      <Line {...{ stroke, smooth, strokeWidth }}/>
     </XYChart>
   );
 };
