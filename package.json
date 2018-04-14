@@ -17,9 +17,9 @@
   "module": "src/index.js",
   "scripts": {
     "build:lib": "NODE_ENV=production webpack -p",
-    "build:examples": "NODE_ENV=production webpack -p --config webpack.examples.config.js",
-    "build": "run-p build:lib build:examples",
-    "start": "webpack-dev-server --config webpack.examples.config.js"
+    "build:docs": "NODE_ENV=production webpack -p --config webpack.docs.config.js",
+    "build": "run-p build:lib build:docs",
+    "start": "webpack-dev-server --config webpack.docs.config.js"
   },
   "dependencies": {
     "d3-path": "^1.0.5",

@@ -4,16 +4,14 @@ const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const DIST_DIR = path.resolve(__dirname, 'dist');
+const DIST_DIR = path.resolve(__dirname, 'docs');
 
 const production = process.argv.indexOf('-p') !== -1;
 
 const plugins = [
-  new CleanWebpackPlugin(['examples'], {
-    root: DIST_DIR
-  }),
+  new CleanWebpackPlugin(['docs']),
   new HtmlWebpackPlugin({
-    template: './src/examples/index.html'
+    template: './src/docs/index.html'
   })
 ];
 
@@ -29,10 +27,10 @@ module.exports = {
 
   target: 'web',
 
-  entry:  './src/examples/index.jsx',
+  entry:  './src/docs/index.jsx',
 
   output: {
-    path: DIST_DIR + '/examples',
+    path: DIST_DIR,
     filename: production ? '[hash].js' : 'examples.js'
   },
 
