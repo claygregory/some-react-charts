@@ -2,7 +2,7 @@
 import React from 'react';
 import { LineChart } from '../';
 
-/*--- START SNIPPET--- */
+/* ---START SNIPPET--- */
 const data = [
   { idx: 1, value: 1 },
   { idx: 2, value: 5 },
@@ -17,6 +17,6 @@ const SimpleLineChartExample = () => (
   <LineChart data={data} smooth stroke="green" x="idx" y="value"/>
 
 );
-/*--- END SNIPPET--- */
+/* ---END SNIPPET--- */
 
 export default SimpleLineChartExample;

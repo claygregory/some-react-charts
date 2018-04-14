@@ -2,8 +2,8 @@
 import React from 'react';
 import Highlight from 'react-highlight';
 
-const START_TAG = '/*--- START SNIPPET--- */';
-const END_TAG = '/*--- END SNIPPET--- */';
+const START_TAG = '/* ---START SNIPPET--- */';
+const END_TAG = '/* ---END SNIPPET--- */';
 
 const Snippet = ({ source }) => {
 

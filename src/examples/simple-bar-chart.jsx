@@ -2,7 +2,7 @@
 import React from 'react';
 import { BarChart } from '../';
 
-/*--- START SNIPPET--- */
+/* ---START SNIPPET--- */
 const data = [
   { idx: 1, value: 2 },
   { idx: 2, value: 8 },
@@ -23,9 +23,9 @@ const data = [
 
 const SimpleBarChartExample = () => (
 
-  <BarChart data={data} barWidth="8" fill="#96C9F8" x="idx" y="value"/>
+  <BarChart data={data} barWidth="8" fill="#B7BDE8" x="idx" y="value"/>
 
 );
-/*--- END SNIPPET--- */
+/* ---END SNIPPET--- */
 
 export default SimpleBarChartExample;

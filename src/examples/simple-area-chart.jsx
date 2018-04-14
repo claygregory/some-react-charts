@@ -2,7 +2,7 @@
 import React from 'react';
 import { AreaChart } from '../';
 
-/*--- START SNIPPET--- */
+/* ---START SNIPPET--- */
 const data = [
   { idx: 1, value: 1 },
   { idx: 2, value: 5 },
@@ -18,6 +18,6 @@ const SimpleAreaChartExample = () => (
     x="idx" y="value" />
 
 );
-/*--- END SNIPPET--- */
+/* ---END SNIPPET--- */
 
 export default SimpleAreaChartExample;

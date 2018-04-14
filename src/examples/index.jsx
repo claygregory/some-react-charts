@@ -19,7 +19,7 @@ import Snippet from './snippet';
 const Example = ({ title, children, source }) => (
 
   <section className="example">
-    <h2>{title}</h2>
+    <h3>{title}</h3>
     <div className="rendered">
       {children}
     </div>
@@ -34,9 +34,14 @@ const Examples = () => {
   return (
     <main>
       <h1>Some React Charts</h1>
+
       <p>
-        An Introduction
+        Project links: <a href="https://github.com/claygregory/some-react-charts">GitHub</a>, <a href="https://www.npmjs.com/package/some-react-charts">NPM</a>
       </p>
+
+      <h2>Usage</h2>
+
+      <h2>Chart Types</h2>
 
       <Example title="Area Chart" source={SimpleAreaChartExampleSource}>
         <SimpleAreaChartExample />
@@ -53,6 +58,10 @@ const Examples = () => {
       <Example title="Scatter Plot" source={ScatterPlotExampleSource}>
         <ScatterPlotExample />
       </Example>
+
+      <h2>Variations</h2>
+
+
     </main>
   );
 };
