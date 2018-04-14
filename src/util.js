@@ -3,7 +3,7 @@ import { every, filter, map as _map, uniq } from 'lodash-es';
 import fecha from 'fecha';
 
 export function constantOrCall(funcOrConstant, ...params) {
-  if (typeof funcOrString === 'function')
+  if (typeof funcOrConstant === 'function')
     return funcOrConstant.apply(params[0], params);
   else
     return funcOrConstant;
