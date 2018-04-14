@@ -7,7 +7,7 @@ import XYChart from './xy-chart';
 import { constantOrCall, propertyMap, scaleData } from '../util';
 
 
-const Line = ({ data, chartX, chartY, smooth, stroke = 'black', strokeWidth, y }) => {
+const Line = ({ data, chartX, chartY, smooth, stroke = 'black', strokeWidth = 3, y }) => {
 
   const x = chartX;
   y = chartY.overrideMap(propertyMap(y));
@@ -34,9 +34,14 @@ const Line = ({ data, chartX, chartY, smooth, stroke = 'black', strokeWidth, y }
   );
 };
 
-const LineChart = ({ stroke, smooth, strokeWidth, ...props }) => {
+Line.defaultProps = {
+  chartRole: 'chart'
+};
+
+
+const LineChart = ({ stroke, smooth, strokeWidth = 3, ...props }) => {
   return (
-    <XYChart margin="8,0,8,0" {...props}>
+    <XYChart margin={[strokeWidth, 0, strokeWidth, 0]} {...props}>
       <Line {...{ stroke, smooth, strokeWidth }}/>
     </XYChart>
   );

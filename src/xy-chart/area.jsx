@@ -9,10 +9,10 @@ import { constantOrCall, propertyMap, scaleData } from '../util';
 
 const Area = ({ data, chartX, chartY, fill, stroke, strokeWidth = 3, smooth, y0, y1 }) => {
 
-  const x = chartX;
   let hasStroke0 = !!stroke && !!y0;
   let hasStroke1 = !!stroke;
 
+  const x = chartX;
   if (y0)
     y0 = chartY.overrideMap(propertyMap(y0));
   else
@@ -45,32 +45,32 @@ const Area = ({ data, chartX, chartY, fill, stroke, strokeWidth = 3, smooth, y0,
     toStrokePath1.curve(curveCardinal);
   }
 
+  const strokePath = (toPath) => (
+    <path className="line"
+      fill="none"
+      stroke={constantOrCall(stroke)}
+      strokeWidth={constantOrCall(strokeWidth)}
+      d={toPath(scaled)}
+      strokeLinecap="round" />
+  );
+
   return (
     <React.Fragment>
       <path className="area"
         fill={constantOrCall(fill)}
         d={toAreaPath(scaled)} />
 
-      {hasStroke0 &&
-        <path className="line"
-          fill="none"
-          stroke={constantOrCall(stroke)}
-          strokeWidth={constantOrCall(strokeWidth)}
-          d={toStrokePath0(scaled)}
-          strokeLinecap="round" />
-      }
+      {hasStroke0 && strokePath(toStrokePath0)}
+      {hasStroke1 && strokePath(toStrokePath1)}
 
-      {hasStroke1 &&
-        <path className="line"
-          fill="none"
-          stroke={constantOrCall(stroke)}
-          strokeWidth={constantOrCall(strokeWidth)}
-          d={toStrokePath1(scaled)}
-          strokeLinecap="round" />
-      }
     </React.Fragment>
   );
 };
+
+Area.defaultProps = {
+  chartRole: 'chart'
+};
+
 
 const AreaChart = ({ fill, stroke, strokeWidth, smooth, y0, y1, ...props }) => {
   return (

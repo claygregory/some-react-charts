@@ -2,10 +2,12 @@
 import React from 'react';
 
 import XYChart from './xy-chart';
+import XAxis from './x-axis';
+import YAxis from './y-axis';
 import { constantOrCall, propertyMap, scaleData } from '../util';
 
 
-const Bars = ({ data, chartX, chartY, fill, barWidth = 4, y, y0, y1 }) => {
+const Bars = ({ data, chartX, chartY, barWidth = 4, fill, stroke, strokeWidth, y, y0, y1 }) => {
 
   const x = chartX;
   if (y0)
@@ -18,6 +20,8 @@ const Bars = ({ data, chartX, chartY, fill, barWidth = 4, y, y0, y1 }) => {
   else
     y1 = chartY;
 
+  if (stroke)
+    strokeWidth = strokeWidth || 2;
 
   const scaled = scaleData(data, x, y0, y1);
 
@@ -35,6 +39,8 @@ const Bars = ({ data, chartX, chartY, fill, barWidth = 4, y, y0, y1 }) => {
           x={x - barWidth / 2}
           y={y1}
           fill={constantOrCall(fill, d, i)}
+          stroke={constantOrCall(stroke, d, i)}
+          strokeWidth={constantOrCall(strokeWidth, d, i)}
           width={barWidth} 
           height={(y0 - y1)} />
       ))}
@@ -42,10 +48,15 @@ const Bars = ({ data, chartX, chartY, fill, barWidth = 4, y, y0, y1 }) => {
   );
 };
 
-const BarChart = ({ fill, barWidth = 4, y0, y1, ...props }) => {
+Bars.defaultProps = {
+  chartRole: 'chart'
+};
+
+
+const BarChart = ({ barWidth = 4, fill, stroke, strokeWidth, y0, y1, ...props }) => {
   return (
     <XYChart margin={[0, barWidth, 0, barWidth]} {...props}>
-      <Bars {...{ fill, barWidth, y0, y1 }}/>
+      <Bars {...{ barWidth, fill, stroke, strokeWidth, y0, y1 }}/>
     </XYChart>
   );
 };
