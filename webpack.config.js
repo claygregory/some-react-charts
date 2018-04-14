@@ -9,7 +9,7 @@ module.exports = {
   entry: './src/index.js',
 
   output: {
-    library: 'some-react-charts',
+    library: 'SomeReactCharts',
     libraryTarget: 'umd',
     filename: 'some-react-charts.js'
   },
