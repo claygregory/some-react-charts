@@ -40,9 +40,9 @@ class XYChart extends React.Component {
   _childrenByRole(role) {
 
     const data = this.props.data;
-    const height = this._chartHeight();
+    const chartHeight = this._chartHeight();
+    const chartWidth = this._chartWidth();
     const margin = this._margin();
-    const width = this._chartWidth();
 
     const children = (React.Children.toArray(this.props.children) || [])
       .filter(c => c.props.chartRole === role);
@@ -51,25 +51,30 @@ class XYChart extends React.Component {
       const chartX = this._x();
       const chartY = this._y();
 
-      chartX.scale().range([0, width]);
-      chartY.scale().range([height, 0]);
+      chartX.scale().range([0, chartWidth]);
+      chartY.scale().range([chartHeight, 0]);
 
-      return React.cloneElement(child, { data, chartX, chartY, height, margin, width });
+      return React.cloneElement(child, { data, chartX, chartY, chartHeight, chartWidth, margin });
     });
   }
 
   _margin() {
+    const defaultMargin = [8, 8, 8, 8];
+
     if (this.props.margin instanceof Array && this.props.margin.length === 4)
+
       return this.props.margin.map(m => parseInt(m));
+
     else if (typeof this.props.margin === 'string') {
-      const divided = this.props.margin.split(',');
-      if (divided.length === 4)
-        return divided.map(m => parseInt(m));
-      else
-        return [0, 0, 0, 0].map(() => parseInt(this.props.margin));
+
+      const divided = this.props.margin.split(/\s*,\s*/);
+      return [0, 0, 0, 0].map((_, i) => parseInt(divided[i % divided.length]));
+
+    } else {
+
+      return defaultMargin;
+
     }
-    else
-      return [0, 0, 0, 0];
   }
 
   _x() {
@@ -91,8 +96,7 @@ class XYChart extends React.Component {
       const position = axis.props.position || 'bottom';
       const style = {
         gridArea: `${position}-axis`,
-        marginLeft: axis.props.margin[3],
-        marginRight: axis.props.margin[1]
+        position: 'relative'
       };
     
       return (
@@ -110,8 +114,7 @@ class XYChart extends React.Component {
       const position = axis.props.position || 'left';
       const style = {
         gridArea: `${position}-axis`,
-        marginTop: axis.props.margin[0],
-        marginBottom: axis.props.margin[2]
+        position: 'relative'
       };
     
       return (
@@ -151,7 +154,7 @@ class XYChart extends React.Component {
     const style = {
       display: 'grid',
       gridTemplateColumns: 'auto 1fr auto',
-      gridTemplateRows: '1fr auto',
+      gridTemplateRows: 'auto 1fr auto',
       gridTemplateAreas: `'. top-axis .'
       'left-axis chart right-axis'
       '. bottom-axis .'`

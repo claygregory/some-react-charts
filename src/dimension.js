@@ -49,6 +49,15 @@ class Diminsion {
       return this._scale;
   }
 
+  ticks(n, format) {
+    const ticks = this.scale().ticks(n);
+    const tickFormat = this.scale().tickFormat(n, format);
+    return ticks.map(tick => ({
+      scaled: this._scale(tick),
+      value: tickFormat(tick)
+    }));
+  }
+
   type() {
     return this._type;
   }

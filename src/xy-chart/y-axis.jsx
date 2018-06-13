@@ -1,17 +1,23 @@
 
 import React from 'react';
 
-import { constantOrCall, propertyMap, scaleData } from '../util';
-
-
-const YAxis = ({ data, chartY, position = 'left' }) => {
+const YAxis = ({ data, chartY, chartHeight, count = 3, format, margin, width = 80, position = 'left' }) => {
 
   const y = chartY;
+  const ticks = y.ticks(count, format);
+
+  const height = chartHeight + margin[0] + margin[2];
+
+  const anchor = position === 'left' ? 'end' : 'start';
 
   return (
-    <React.Fragment>
-      Axis Y!
-    </React.Fragment>
+    <svg width={width} height={height}>
+      {ticks.map((tick, i) => (
+        <text key={i} x={width} y={tick.scaled + margin[0]} textAnchor={anchor} className="label">
+          {tick.value}
+        </text>
+      ))}
+    </svg>
   );
 };
 

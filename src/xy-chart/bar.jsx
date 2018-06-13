@@ -2,8 +2,6 @@
 import React from 'react';
 
 import XYChart from './xy-chart';
-import XAxis from './x-axis';
-import YAxis from './y-axis';
 import { constantOrCall, propertyMap, scaleData } from '../util';
 
 
