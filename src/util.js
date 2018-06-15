@@ -27,6 +27,10 @@ export function detectType(arr) {
     return 'string';
 }
 
+export function degToRad(deg) {
+  return parseFloat(deg) * Math.PI / 180;
+}
+
 export function filterData(data, ...specs) {
   return filter(data, d =>
     every(specs.map(s => s.map(d)), v => v !== null && v !== undefined)
