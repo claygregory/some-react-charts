@@ -32,7 +32,9 @@ module.exports = {
     'd3-scale': 'd3-scale',
     'd3-shape': 'd3-shape',
     'fetcha': 'fetcha',
+    'lodash-es': 'lodash-es',
     'react-autobind': 'react-autobind',
+    'react-measure': 'react-measure',
     react: {
       root: 'React',
       commonjs2: 'react',
